@@ -1,0 +1,76 @@
+<!-- For use together with the simple_ajax method found in repl.py. -->
+<!-- Named index.html since this is SimpleHTTPRequestHandler's default.-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX REPL</title>
+</head>
+
+<!-- Inline CSS, for syntax highlighting. -->
+<style>
+.string { color: green; }
+.number { color: darkorange; }
+.boolean { color: blue; }
+.null { color: magenta; }
+.key { color: red; }
+</style>
+
+<body>
+
+<!-- The query input box. Triggers a query to the server for every keypress. -->
+<input type="text" id="queryInput" oninput="getResults(this.value)">
+
+<!-- Placeholder for the search results. -->
+<pre>
+    <div id="resultsOutput"></div>
+</pre>
+
+<script>
+
+// This gets invoked per keypress. Coordinated with the HTTP server found in repl.py.
+function getResults(query) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var results = JSON.parse(xhr.responseText);
+            displayResults(results);
+        }
+    };
+    xhr.open("GET", "/query?q=" + query, true);
+    xhr.send();
+}
+
+// This populates the part of the page holding the search results.
+// For now, simply display raw (but pretty-printed) JSON.
+function displayResults(results) {
+    var prettyprinted = JSON.stringify(results, null, 2);
+    var colorized = syntaxHighlight(prettyprinted)
+    var output = document.getElementById('resultsOutput');
+    output.innerHTML = colorized;
+}
+
+// This colorizes the given JSON string. Coordinated with the inline CSS above. Thanks, stackoverflow.com!
+function syntaxHighlight(json) {
+    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+        var cls = 'number';
+        if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+                cls = 'key';
+            } else {
+                cls = 'string';
+            }
+        } else if (/true|false/.test(match)) {
+            cls = 'boolean';
+        } else if (/null/.test(match)) {
+            cls = 'null';
+        }
+        return '<span class="' + cls + '">' + match + '</span>';
+    });
+}
+</script>
+
+</body>
+</html>

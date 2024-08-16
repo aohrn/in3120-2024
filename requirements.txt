@@ -1,0 +1,10 @@
+# This repository is, for simplicity, mostly self-contained and without dependencies
+# on modules that are not part of the standard Python distribution. In a select few
+# cases, though, we import a few packages when the purpose is to demonstrate their
+# use rather than to demonstrate how they are implemented.
+#
+# Do 'pip install -r requirements.txt' to have these packages installed.
+numpy
+spacy
+faiss-cpu
+colorama
