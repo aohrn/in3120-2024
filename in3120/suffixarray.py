@@ -42,7 +42,6 @@ class SuffixArray:
         """
         raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
 
-
     def __binary_search(self, needle: str) -> int:
         """
         Does a binary search for a given normalized query (the needle) in the suffix array (the haystack).
