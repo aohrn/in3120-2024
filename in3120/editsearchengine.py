@@ -44,7 +44,64 @@ class EditSearchEngine:
         Supported dictionary keys include "upper_bound" (int), "candidate_count" (int),
         "hit_count" (int), "first_n" (int), and "scoring" (str).
         """
-        raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
+        # Tokenize and join to be robust to nuances in whitespace.
+        tokens = self.__tokenizer.tokens(self.__normalizer.canonicalize(query))
+        tokens = ((self.__normalizer.normalize(t), _) for t, _ in tokens)
+        query = self.__tokenizer.join(tokens)
+
+        # The upper bound for the edit distance we accept between the query and a match. Assumed to be
+        # a small number, e.g., 1, 2, or 3. The lower we set the upper bound, the more we can prune
+        # the search space, and the more efficient the lookup will be.
+        upper_bound = max(0, options.get("upper_bound", 1))
+
+        # The maximum number of candidate matches we score.
+        candidate_count = max(1, options.get("candidate_count", 10000))
+
+        # The maximum number of scored matches we will emit.
+        hit_count = max(1, min(100, options.get("hit_count", 10)))
+
+        # Assume that the N first characters are correct? This significantly prunes down the search
+        # space and can give a performance boost. However, we get worse recall if the assumption is
+        # incorrect.
+        first_n = max(0, min(len(query), options.get("first_n", 0)))
+
+        # Make some modifications to our starting point, if needed.
+        head = query[:first_n]
+        tail = query[first_n:]
+        root = self.__trie if first_n == 0 else self.__trie.consume(head)
+
+        # The available scoring functions that the client can choose from. High
+        # scores are better than low scores. 
+        scorers = {
+            "negated": None,
+            "normalized": None,
+            "lopresti": None
+        }
+
+        # The selected scoring function to apply to candidate matches.
+        scorer = scorers.get(options.get("scoring", "normalized"), None)
+        assert scorer is not None
+
+        # For keeping track of scored candidate matches. Only retains the highest-scoring ones.
+        sieve = Sieve(hit_count)
+
+        # The edit table object that we update as we traverse the trie. Two strings that share
+        # a prefix of length N also share the N first columns in the edit table. Hence, as we
+        # traverse the trie we can avoid recomputing large parts of the table.
+        table = EditTable(tail, "?" * 10, False)
+
+        # Receives matches from the search, as they are found. The search aborts if the callback
+        # returns False, i.e., when we have received sufficiently many candidate matches.
+        def callback(distance: int, candidate: str, meta: Any) -> bool:
+            raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
+
+        # Search! We receive and sift results via the callback.
+        if root:
+            self.__dfs(root, 0, table, upper_bound, callback)
+
+        # Emit the best matches!
+        for score, (distance, match, meta) in sieve.winners():
+            yield {"score": score, "distance": distance, "match": head + match, "meta": meta}
 
     def __dfs(self, node: Trie, level: int, table: EditTable,
               upper_bound: int, callback: Callable[[float, str, Any], bool]) -> bool:
