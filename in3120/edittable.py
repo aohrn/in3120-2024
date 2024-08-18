@@ -26,7 +26,6 @@ class EditTable:
     distance). We do thus not need to store older columns. Such a space optimization does not
     play nice with the needs of the abovementioned algorithm by Shang and Merrett, though.
 
-    TODO: Implement Ukkonen's cutoff heuristic for bounded edit distance.
     """
 
 
