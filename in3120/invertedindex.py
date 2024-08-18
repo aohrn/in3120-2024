@@ -151,3 +151,78 @@ class InMemoryInvertedIndex(InvertedIndex):
 
     def get_document_frequency(self, term: str) -> int:
         raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
+
+class DummyInMemoryInvertedIndex(InMemoryInvertedIndex):
+    """
+    Creates a fake or dummy inverted index with no posting lists. Useful if the only effect we're
+    after is the ability to infer a term's document frequency in the corpus, and we want to allow
+    this to happen whether we have a real inverted index available or not: If we have a real inverted
+    index at hand then use that, otherwise we can create and use this dummy version.
+    """
+
+    def __init__(self, corpus: Corpus, fields: Iterable[str], normalizer: Normalizer, tokenizer: Tokenizer):
+        self._document_frequencies: Dict[int, int] = {}  # Maps a term identifier to its document frequency.
+        super().__init__(corpus, fields, normalizer, tokenizer, False)
+
+    def __repr__(self):
+        return str({term: self._document_frequencies[term_id] for term, term_id in self._dictionary})
+
+    def _append_to_posting_list(self, term_id: int, document_id: int, term_frequency: int, compressed: bool) -> None:
+        # Actually, don't append to the posting list. Introduce a side-effect instead.
+        self._document_frequencies[term_id] = self._document_frequencies.get(term_id, 0) + 1
+
+    def _finalize_index(self):
+        # No posting lists!
+        pass
+
+    def get_postings_iterator(self, term: str) -> Iterator[Posting]:
+        # No posting lists!
+        return iter([])
+
+    def get_document_frequency(self, term: str) -> int:
+        return self._document_frequencies.get(self._dictionary.get_term_id(term), 0)
+
+
+class AccessLoggedInvertedIndex(InvertedIndex):
+    """
+    Wraps another inverted index, and keeps an in-memory log of which postings
+    that have been accessed. Facilitates testing.
+    """
+
+    class AccessLoggedIterator(Iterator[Posting]):
+        """
+        Wraps another iterator, and updates an in-memory log of which postings
+        that have been accessed. Facilitates testing.
+        """
+
+        def __init__(self, term: str, accesses: List[Tuple[str, int]], wrapped: Iterator[Posting]):
+            self._term = term
+            self._accesses = accesses
+            self._wrapped = wrapped
+
+        def __next__(self):
+            posting = next(self._wrapped)
+            self._accesses.append((self._term, posting.document_id))
+            return posting
+
+    def __init__(self, wrapped: InvertedIndex):
+        self._wrapped = wrapped
+        self._accesses = []
+
+    def get_terms(self, buffer: str) -> Iterator[str]:
+        return self._wrapped.get_terms(buffer)
+
+    def get_indexed_terms(self) -> Iterator[str]:
+        return self._wrapped.get_indexed_terms()
+
+    def get_postings_iterator(self, term: str) -> Iterator[Posting]:
+        return __class__.AccessLoggedIterator(term, self._accesses, self._wrapped.get_postings_iterator(term))
+
+    def get_document_frequency(self, term: str) -> int:
+        return self._wrapped.get_document_frequency(term)
+
+    def get_history(self) -> List[Tuple[str, int]]:
+        """
+        Returns the list of postings that clients have accessed so far.
+        """
+        return self._accesses
