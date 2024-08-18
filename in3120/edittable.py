@@ -28,9 +28,43 @@ class EditTable:
 
     """
 
+    # The default cell value, when initializing the table. This value does not matter since all
+    # relevant cell values will be computed, but a value of -1 stands out visually when printing
+    # the table for debugging purposes. That way, if you print the table while the computation is
+    # in some intermediate state, you can easily see which cells that have been visited and which
+    # ones that have not.
+    _default = -1
+
+    # A large internal value used to represent "infinity", for all practical purposes.
+    _infinity = 210470
 
     def __init__(self, query: str, candidate: str, compute: bool = True):
-        raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
+
+        # Logical row/column labels. The query string is immutable, but we offer clients the
+        # capability to mutate the candidate string on a per symbol basis.
+        self._query = query
+        self._candidate = list(candidate)
+
+        # Initialize table. Pad the table with an extra row and an extra column,
+        # representing the empty string that we can imagine prefixes both strings.
+        # Note that since we add an extra row and an extra columns, we will elsewhere
+        # have to offset accordingly to align between table row/column indices and the
+        # indices into the strings that logically correspond to each row/column.
+        self._table = [[self._default for j in range(len(self._candidate) + 1)] for i in range(len(self._query) + 1)]
+
+        # Initialize with edit distances to the empty string, i.e., fill the row/column
+        # we padded above.
+        for i in range(len(self._query) + 1):
+            self._table[i][0] = i
+        for j in range(len(self._candidate) + 1):
+            self._table[0][j] = j
+
+        # Populate the table, unless otherwise instructed. Start at the NW-most (upper left)
+        # corner cell, and do column by column. The edit distance will be located in the SE-most
+        # (lower right) corner cell.
+        if compute:
+            for j in range(1, len(self._candidate) + 1):
+                self.update(j)
 
     def __extend(self, extra: int) -> None:
         """
@@ -38,13 +72,21 @@ class EditTable:
         to the candidate string, (b) appending cells to the special first padding row, and (c)
         appending cells to all the other rows.
         """
-        raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
+        current = len(self._candidate)
+        self._candidate.extend("?" for _ in range(extra))
+        self._table[0].extend(x for x in range(current + 1, current + 1 + extra))
+        for i in range(1, len(self._table)):
+            self._table[i].extend(self._default for _ in range(extra))
 
     def stringify(self) -> str:
         """
         Creates a readable version of the edit table, for manual inspection and debugging.
         """
-        raise NotImplementedError("OPTIONAL: You need to implement this as part of the obligatory assignment.")
+        width = 3
+        header = " " + (" " * width) + "".join(f"{s:>{width}}" for s in self._candidate)
+        row0 = " " + "".join(f"{str(v):>{width}}".format(v) for v in self._table[0])
+        rows = [f"{self._query[i]}" + "".join(f"{str(v):>{width}}".format(v) for v in self._table[i + 1]) for i in range(len(self._query))]
+        return "\n".join(["", header, row0] + rows)
 
     def update(self, j: int) -> int:
         """
@@ -58,6 +100,17 @@ class EditTable:
         """
         raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
 
+    def update2(self, j: int, symbol: str) -> int:
+        """
+        Similar to update/1 above, but simultaneously allows you to update a single symbol
+        in the candidate string, namely the symbol corresponding to the given column.
+
+        Additionally, this method appends additional columns to the table if the supplied
+        column index is just out of range. That way, the table is usable also by clients
+        that need to deal with candidate strings longer than what was initially anticipated.
+        """
+        raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
+
     def distance(self, j: int = -1) -> int:
         """
         Returns the edit distance between the query string and the candidate string.
@@ -67,11 +120,11 @@ class EditTable:
         Only a prefix of the candidate string can be considered, if specified. That is,
         the caller is allowed to supply a column index and that way vary the W-E axis.
         """
-        raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
+        return self._table[-1][j]
 
     def prefix(self, j: int) -> str:
         """
         Returns the prefix of the candidate string, up to the given index. I.e.,
         returns candidate[0:j].
         """
-        raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
+        return "".join(self._candidate[0:j])
