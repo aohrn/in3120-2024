@@ -32,7 +32,6 @@ class EditTable:
     def __init__(self, query: str, candidate: str, compute: bool = True):
         raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
 
-
     def __extend(self, extra: int) -> None:
         """
         Appends a few extra columns to the table. Appending columns implies (a) appending symbols
