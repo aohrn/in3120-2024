@@ -31,7 +31,6 @@ class ExtendedBooleanSearchEngine(BooleanSearchEngine):
 
         raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
 
-
     def _unhandled(self, tree: ast.AST) -> None:
         """
         Invoked during initial tree validation from the base class. Overloaded from the base
