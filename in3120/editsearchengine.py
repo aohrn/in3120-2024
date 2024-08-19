@@ -71,11 +71,12 @@ class EditSearchEngine:
         root = self.__trie if first_n == 0 else self.__trie.consume(head)
 
         # The available scoring functions that the client can choose from. High
-        # scores are better than low scores. 
+        # scores are better than low scores. The "lopresti" function is lifted
+        # from https://www.cse.lehigh.edu/~lopresti/Publications/1996/sdair96.pdf.
         scorers = {
-            "negated": None,
-            "normalized": None,
-            "lopresti": None
+            "negated": lambda d, q, c: -d,
+            "normalized": lambda d, q, c: 1.0 - (d / (first_n + max(len(q), len(c)))),
+            "lopresti": lambda d, q, c: 1.0 / math.exp(d / (first_n + max(len(q), len(c)) - d)),
         }
 
         # The selected scoring function to apply to candidate matches.
