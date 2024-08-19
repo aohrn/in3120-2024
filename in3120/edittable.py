@@ -25,7 +25,6 @@ class EditTable:
     case of Levenshtein distance) or previous two columns (in the case of Damerau-Levenshtein
     distance). We do thus not need to store older columns. Such a space optimization does not
     play nice with the needs of the abovementioned algorithm by Shang and Merrett, though.
-
     """
 
     # The default cell value, when initializing the table. This value does not matter since all
