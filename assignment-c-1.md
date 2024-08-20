@@ -1,6 +1,6 @@
 # Assignment C-1
 
-**Deadline:** TBA
+**Deadline:** 2024-10-11
 
 The purpose of this assignment is to implement a simple query evaluator that efficiently performs _n_-of-_m_ matching over a simple memory-based inverted index. I.e., if the query contains _m_ unique query terms, each document in the result set should contain at least _n_ of these _m_ terms. For example, 2-of-3 matching over the query _orange apple banana_ would be logically equivalent to the following predicate:
 

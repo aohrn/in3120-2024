@@ -1,6 +1,6 @@
 # Assignment C-2
 
-**Deadline:** TBA
+**Deadline:** 2024-10-11
 
 The purpose of this assignment is to extend the [`BooleanSearchEngine`](./in3120/booleansearchengine.py) class with a handful of new linguistic operators. The existing implementation already provides support for the logical operators `AND`, `OR`, and `ANDNOT`. Your task is to add support for the following new operators:
 

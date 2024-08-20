@@ -1,6 +1,6 @@
 # Assignment E-1
 
-**Deadline:** TBA
+**Deadline:** 2024-11-08
 
 The purpose of this assignment is to write a simple classifier that, using the multinomial naïve Bayes classification rule, can automatically detect which language a given input buffer is written in. We will train the classifier on a small corpus of Norwegian, Danish, English and German documents. Use add-one smoothing as described in the textbook when computing the probability estimates.
 

@@ -1,6 +1,6 @@
 # Assignment D-2
 
-**Deadline:** TBA
+**Deadline:** 2024-10-25
 
 The purpose of this assignment is to explore a compression algorithm of your choice for compressing posting lists, and to compare this with the `CompressedInMemoryPostingList` implementation in [`postinglist.py`](in3120/postinglist.py).
 

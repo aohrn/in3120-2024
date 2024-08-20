@@ -1,6 +1,6 @@
 # Assignment E-2
 
-**Deadline:** TBA
+**Deadline:** 2024-11-08
 
 The purpose of this assignment is to explore alternative embedding methods and/or approximate nearest neighbor (ANN) index structures, and to compare these with the `SimilaritySearchEngine` implementation in [`similaritysearchengine.py`](in3120/similaritysearchengine.py).
 
