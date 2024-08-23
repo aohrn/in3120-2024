@@ -36,6 +36,7 @@ Example output:
 >cd tests
 >python3 assignments.py a
 test_access_postings (test_inmemoryinvertedindexwithoutcompression.TestInMemoryInvertedIndexWithoutCompression.test_access_postings) ... ok
+test_access_vocabulary (test_inmemoryinvertedindexwithoutcompression.TestInMemoryInvertedIndexWithoutCompression.test_access_vocabulary) ... ok
 test_mesh_corpus (test_inmemoryinvertedindexwithoutcompression.TestInMemoryInvertedIndexWithoutCompression.test_mesh_corpus) ... ok
 test_multiple_fields (test_inmemoryinvertedindexwithoutcompression.TestInMemoryInvertedIndexWithoutCompression.test_multiple_fields) ... ok
 test_empty_lists (test_postingsmerger.TestPostingsMerger.test_empty_lists) ... ok
@@ -45,10 +46,11 @@ test_order_independence (test_postingsmerger.TestPostingsMerger.test_order_indep
 test_uncompressed_mesh_corpus (test_postingsmerger.TestPostingsMerger.test_uncompressed_mesh_corpus) ... ok
 test_uses_yield (test_postingsmerger.TestPostingsMerger.test_uses_yield) ... ok
 test_malformed_queries (test_booleansearchengine.TestBooleanSearchEngine.test_malformed_queries) ... ok
+test_optimization (test_booleansearchengine.TestBooleanSearchEngine.test_optimization) ... ok
 test_valid_expressions (test_booleansearchengine.TestBooleanSearchEngine.test_valid_expressions) ... ok
 
 ----------------------------------------------------------------------
-Ran 11 tests in 0.690s
+Ran 13 tests in 0.437s
 
 OK
 ```
