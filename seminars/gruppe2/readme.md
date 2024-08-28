@@ -14,4 +14,6 @@ Dersom du har ønsker, innspill eller feedback har jeg et anonymt Nettskjema som
 
 ## Ukevis opplegg
 
+Innholdet i gruppetimene er laget for at man skal være fysisk til stede der og da. I mappene som er lenket under vil du finne foilene, men ikke så mye mer. Om du er interessert i m er enn bare slides - sjekk ut [gruppe 1](../gruppe1/) sine ressurser.
+
 1. [Introduksjon: indekser og postinglister](./uke1)
