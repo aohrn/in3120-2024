@@ -11,7 +11,7 @@ Her kommer en kort oppsummering av de viktigste delene fra gruppetimen 28. augus
 ## Operasjoner på postinglister
 Assignment A handler blant annet om operasjoner på postinglister. Dette er en kort forklaring på hvordan hver av de fungerer.
 ### Union
-Alle postinger som er i A eller B. Det har ingenting å si om postingen er i bare en eller i begge av postinglistene.
+Alle postinger som er i A eller B. Det har ingenting å si om postingen er i bare en eller i begge av postinglistene.  
 (1, 2, 3) $\cup$ (2, 3, 4, 5) = (1, 2, 3, 4, 5)
 
 ### Snitt (intersection)
@@ -19,5 +19,5 @@ Alle postinger som forekommer i både A og B. Dette betyr at postinger som kun e
 (1, 2 ,3) $\cap$ (2, 3, 4, 5) = (2, 3)
 
 ### Difference
-Alle postinger som er i A, men som ikke er i B. Bare postingene i A som ikke finnes i B er en del av resultatet. Ingenting fra B er en del av resultatet. Difference kan skrives både *A\B* og *A-B*.
+Alle postinger som er i A, men som ikke er i B. Bare postingene i A som ikke finnes i B er en del av resultatet. Ingenting fra B er en del av resultatet. Difference kan skrives både *A\B* og *A-B*.  
 (1, 2, 3)\\(2, 3, 4) = (1)
