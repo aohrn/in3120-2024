@@ -1,0 +1,2 @@
+# Notater til eksamensøving
+Jeg legger fortløpende ut dokumenter som kan hjelpe å øve til eksamen. Noe kan kanskje brukes utenom eksamenstrøkket også, så det er lurt å ta en titt selv om det er lenge til!
