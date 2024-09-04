@@ -1,13 +1,13 @@
 # Uke 2
 Denne uka har vi tatt for oss parsing av tekst, skip-pekere og hvordan bruke obligtestene.
 ## Begreper for parsing av tekst
-- Tokenization: Dele opp en sammenhengende sekvensav tekst til tokens
+- Tokenization: Dele opp en sammenhengende sekvensav tekst til tokens  
 «En gul bil» → «En», «gul», «bil»
-- Normalization: "Normalisere" variasjoner av ord til samme format
+- Normalization: "Normalisere" variasjoner av ord til samme format  
 «U.S.A» og «USA» skal ideelt matche
-- Lemmatization: Redusere variasjoner av ord til basisform
+- Lemmatization: Redusere variasjoner av ord til basisform  
 am, are, is → be
-- Stemming: Redusere et ord til "stammen" av ordet
+- Stemming: Redusere et ord til "stammen" av ordet  
 Automates, automatic  → automat
 
 ## Skip-pekere
