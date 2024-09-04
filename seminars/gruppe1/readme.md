@@ -7,3 +7,4 @@ Ellers er jeg tilgjengelig på e-post (trulshes@uio.no) eller Mattermost (trulsh
 
 ## Ukentlig oversikt
 1. [Invertert indeks, postinglister, tips til assignment A](https://github.com/aohrn/in3120-2024/tree/main/seminars/gruppe1/uke01)
+2. [Parsing, skip-pekere, tips til testing](https://github.com/aohrn/in3120-2024/tree/main/seminars/gruppe1/uke02)
