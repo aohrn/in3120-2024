@@ -18,4 +18,5 @@ Innholdet i gruppetimene er laget for at man skal være fysisk til stede der og 
 
 1. [Introduksjon: indekser og postinglister](./uke1)
 1. [Datastrukturer for strenger: suffix arrays og tries](./uke2)
+1. [Algoritmer for strengesøk: bruk av suffix arrays og tries](./uke3)
 
