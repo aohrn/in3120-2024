@@ -45,11 +45,12 @@ test_exact_match (test_editsearchengine.TestEditSearchEngine.test_exact_match) .
 test_first_n (test_editsearchengine.TestEditSearchEngine.test_first_n) ... ok
 test_hit_count (test_editsearchengine.TestEditSearchEngine.test_hit_count) ... ok
 test_invalid_scoring_function (test_editsearchengine.TestEditSearchEngine.test_invalid_scoring_function) ... ok
+test_normalization_and_whitespace (test_editsearchengine.TestEditSearchEngine.test_normalization_and_whitespace) ... ok
 test_scores_are_sorted (test_editsearchengine.TestEditSearchEngine.test_scores_are_sorted) ... ok
 test_upper_bound (test_editsearchengine.TestEditSearchEngine.test_upper_bound) ... ok
 
 ----------------------------------------------------------------------
-Ran 9 tests in 0.020s
+Ran 10 tests in 0.006s
 
 OK
 ```

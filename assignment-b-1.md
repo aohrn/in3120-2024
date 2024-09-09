@@ -39,15 +39,29 @@ Example output:
 ```
 >cd tests
 >python3 assignments.py b-1
-test_cran_corpus (tests.TestSuffixArray) ... ok
-test_memory_usage (tests.TestSuffixArray) ... ok
-test_multiple_fields (tests.TestSuffixArray) ... ok
-test_access_nodes (tests.TestTrie) ... ok
-test_mesh_terms_in_cran_corpus (tests.TestStringFinder) ... ok
-test_scan (tests.TestStringFinder) ... ok
+test_canonicalized_corpus (test_suffixarray.TestSuffixArray.test_canonicalized_corpus) ... ok
+test_cran_corpus (test_suffixarray.TestSuffixArray.test_cran_corpus) ... ok
+test_memory_usage (test_suffixarray.TestSuffixArray.test_memory_usage) ... ok
+test_multiple_fields (test_suffixarray.TestSuffixArray.test_multiple_fields) ... ok
+test_uses_yield (test_suffixarray.TestSuffixArray.test_uses_yield) ... ok
+test_add_is_idempotent (test_trie.TestTrie.test_add_is_idempotent) ... ok
+test_add_is_idempotent_unless_meta_data_differs (test_trie.TestTrie.test_add_is_idempotent_unless_meta_data_differs) ... ok
+test_child (test_trie.TestTrie.test_child) ... ok
+test_consume_and_final (test_trie.TestTrie.test_consume_and_final) ... ok
+test_containment (test_trie.TestTrie.test_containment) ... ok
+test_dump_strings (test_trie.TestTrie.test_dump_strings) ... ok
+test_transitions (test_trie.TestTrie.test_transitions) ... ok
+test_with_meta_data (test_trie.TestTrie.test_with_meta_data) ... ok
+test_mesh_terms_in_cran_corpus (test_stringfinder.TestStringFinder.test_mesh_terms_in_cran_corpus) ... ok
+test_relative_insensitivity_to_dictionary_size (test_stringfinder.TestStringFinder.test_relative_insensitivity_to_dictionary_size) ... ok
+test_scan_matches_and_spans (test_stringfinder.TestStringFinder.test_scan_matches_and_spans) ... ok
+test_scan_matches_and_surface_forms_only (test_stringfinder.TestStringFinder.test_scan_matches_and_surface_forms_only) ... ok
+test_uses_yield (test_stringfinder.TestStringFinder.test_uses_yield) ... ok
+test_with_phonetic_normalizer_and_meta (test_stringfinder.TestStringFinder.test_with_phonetic_normalizer_and_meta) ... ok
+test_with_unigram_tokenizer_for_finding_arbitrary_substrings (test_stringfinder.TestStringFinder.test_with_unigram_tokenizer_for_finding_arbitrary_substrings) ... ok
 
 ----------------------------------------------------------------------
-Ran 6 tests in 3.035s
+Ran 20 tests in 1.271s
 
 OK
 ```
