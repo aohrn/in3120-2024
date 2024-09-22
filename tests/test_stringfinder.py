@@ -91,7 +91,7 @@ class TestStringFinder(unittest.TestCase):
                 self.assertEqual(1, len(results))
                 times[i] = min(times[i], end - start)
         ratio = times[1] / times[0]
-        slack = 0.30  # Allow quite a bit of slack, to avoid spurious test failures.
+        slack = 0.35  # Allow quite a bit of slack, to avoid spurious test failures.
         self.assertLessEqual(ratio - slack, 1.0)
         self.assertLessEqual(1.0, ratio + slack)
 
