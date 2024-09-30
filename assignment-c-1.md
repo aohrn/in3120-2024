@@ -41,7 +41,7 @@ Example output:
 
 ```
 >cd tests
->python3 assignments.py c
+>python3 assignments.py c-1
 test_document_at_a_time_traversal_mesh_corpus (tests.TestSimpleSearchEngine) ... ok
 test_mesh_corpus (tests.TestSimpleSearchEngine) ... ok
 test_synthetic_corpus (tests.TestSimpleSearchEngine) ... ok
