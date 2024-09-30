@@ -42,13 +42,14 @@ Example output:
 ```
 >cd tests
 >python3 assignments.py c-1
-test_document_at_a_time_traversal_mesh_corpus (tests.TestSimpleSearchEngine) ... ok
-test_mesh_corpus (tests.TestSimpleSearchEngine) ... ok
-test_synthetic_corpus (tests.TestSimpleSearchEngine) ... ok
-test_uses_yield (tests.TestSimpleSearchEngine) ... ok
+test_canonicalized_corpus (test_simplesearchengine.TestSimpleSearchEngine.test_canonicalized_corpus) ... ok
+test_document_at_a_time_traversal_mesh_corpus (test_simplesearchengine.TestSimpleSearchEngine.test_document_at_a_time_traversal_mesh_corpus) ... ok
+test_mesh_corpus (test_simplesearchengine.TestSimpleSearchEngine.test_mesh_corpus) ... ok
+test_synthetic_corpus (test_simplesearchengine.TestSimpleSearchEngine.test_synthetic_corpus) ... ok
+test_uses_yield (test_simplesearchengine.TestSimpleSearchEngine.test_uses_yield) ... ok
 
 ----------------------------------------------------------------------
-Ran 4 tests in 1.798s
+Ran 5 tests in 0.390s
 
 OK
 ```
