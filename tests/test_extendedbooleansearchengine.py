@@ -4,7 +4,7 @@
 # pylint: disable=line-too-long
 
 import unittest
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Iterator, Tuple
 from context import in3120
 
 
@@ -78,7 +78,15 @@ class TestExtendedBooleanSearchEngine(unittest.TestCase):
         self.assertEqual(str(exc.exception), "At least one of the values for key 'a' maps to a sequence of index terms instead of a single index term.")
 
     def test_with_unsupported_tokenizer(self):
-        for tokenizer in [in3120.ShingleGenerator(3)]:
+        class UnsupportedTokenizer(in3120.Tokenizer):
+            def spans(self, buffer: str) -> Iterator[Tuple[int, int]]:
+                if buffer:
+                    if len(buffer) <= 2:
+                        yield (0, len(buffer))
+                    else:
+                        midpoint = len(buffer) // 2
+                        yield from ((0, midpoint + 1), (midpoint - 1, len(buffer)))
+        for tokenizer in [UnsupportedTokenizer()]:
             index = in3120.InMemoryInvertedIndex(self._corpus, ["body"], self._normalizer, tokenizer)
             synonyms = in3120.Trie.from_strings2([("xxxYYYzzz", ["abcdefg", "brock"])], self._normalizer, self._tokenizer)
             with self.assertRaises(AssertionError) as exc:

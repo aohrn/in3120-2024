@@ -102,6 +102,6 @@ class UnigramTokenizer(Tokenizer):
         if buffer:
             yield from ((buffer[i], (i, i + 1)) for i in range(len(buffer)))
 
-    def spans(self, buffer: str):
+    def spans(self, buffer: str) -> Iterator[Tuple[int, int]]:
         if buffer:
             yield from ((i, i + 1) for i in range(len(buffer)))
