@@ -6,6 +6,7 @@
 
 import unittest
 import types
+import warnings
 from itertools import product, combinations_with_replacement, takewhile
 from context import in3120
 
@@ -145,7 +146,13 @@ class TestSimpleSearchEngine(unittest.TestCase):
                      ('water', 25276), ('water', 25277), ('water', 25278), ('water', 25279), ('water', 25280),
                      ('water', 25281)]
         history = index.get_history()
-        self.assertTrue(history == ordering1 or history == ordering2)  # Strict.
+        test1 = history in (ordering1, ordering2)  # Strict. This is preferred.
+        test2 = len(history) == len(ordering1)     # Less strict.
+        if test2 and not test1:                    # It is possible to have sensible implementations that fail the strict test.
+            warnings.warn("Unorthodox postings list traversal order detected. This may or may not be benign.")
+        self.assertSetEqual({term for term, _ in history}, {'water', 'pollution'})
+        self.assertSetEqual({document_id for _, document_id in history}, {document_id for (_, document_id) in ordering1})
+        self.assertTrue(test1 or test2)
 
     def test_uses_yield(self):
         corpus = in3120.InMemoryCorpus()
