@@ -37,8 +37,8 @@ class EditSearchEngine:
         Locates all strings in the trie that are no more than K edit errors away from the query string.
 
         The matching strings, if any, are scored and only the highest-scoring matches are yielded
-        back to the client as dictionaries having the keys "score" (float), "distance" (int) and
-        "match" (str).
+        back to the client as dictionaries having the keys "score" (float), "distance" (int),
+        "match" (str), and "meta" (Optional[Any]).
 
         The client can supply a dictionary of options that controls the query evaluation process:
         Supported dictionary keys include "upper_bound" (int), "candidate_count" (int),
@@ -94,7 +94,11 @@ class EditSearchEngine:
         # Receives matches from the search, as they are found. The search aborts if the callback
         # returns False, i.e., when we have received sufficiently many candidate matches.
         def callback(distance: int, candidate: str, meta: Any) -> bool:
-            raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
+            score = scorer(distance, tail, candidate)
+            sieve.sift(score, (distance, candidate, meta))
+            nonlocal candidate_count
+            candidate_count -= 1
+            return candidate_count > 0
 
         # Search! We receive and sift results via the callback.
         if root:
@@ -119,4 +123,30 @@ class EditSearchEngine:
         reasonable lengths, but could merit a second look if we look to apply this to other
         use cases.
         """
-        raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
+        # Are we at a node in the trie that corresponds to a dictionary entry?
+        if node.is_final():
+
+            # This may or may not be something that we want to report: We know that the
+            # dictionary entry is within the edit distance bound to some prefix of the query
+            # string, but the query string could be longer. So check the distance between the
+            # dictionary entry and the complete query string. (We could easily do something
+            # here to support different matching modes.)
+            distance = table.distance(level)
+
+            # Only report the match if the distance is below our specified bound.
+            # If reported, abort the search afterwards if we're told to.
+            if distance <= upper_bound:
+                if not callback(distance, table.prefix(level), node.get_meta()):
+                    return False
+
+        # The node may have children. Explore or prune the branches. Only explore if we have
+        # not exceeded our upper bound. The lower our upper bound, the more of the search
+        # space we can prune away.
+        for transition in node.transitions():
+            distance = table.update2(level + 1, transition)
+            if distance <= upper_bound:
+                if not self.__dfs(node.child(transition), level + 1, table, upper_bound, callback):
+                    return False
+
+        # Continue the search.
+        return True

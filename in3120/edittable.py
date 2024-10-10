@@ -25,6 +25,7 @@ class EditTable:
     case of Levenshtein distance) or previous two columns (in the case of Damerau-Levenshtein
     distance). We do thus not need to store older columns. Such a space optimization does not
     play nice with the needs of the abovementioned algorithm by Shang and Merrett, though.
+
     """
 
     # The default cell value, when initializing the table. This value does not matter since all
@@ -95,9 +96,20 @@ class EditTable:
         
         Returns the minimum value in the updated table column. This corresponds to returning
         the minimal value of edit-distance(query[0:i], candidate[0:j]) found by varying over
-        all the row indices i.
+        all the row indices i, i.e., the minimal edit distance between candidate[0:j] and some
+        prefix of the query string.
         """
-        raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
+        symbol = self._candidate[j - 1]
+        result = self._infinity
+        for i in range(1, len(self._query) + 1):
+            if self._query[i - 1] == symbol:
+                self._table[i][j] = self._table[i - 1][j - 1]
+            else:
+                self._table[i][j] = 1 + min(self._table[i - 1][j], self._table[i][j - 1], self._table[i - 1][j - 1])
+            if i > 1 and j > 1 and self._query[i - 2] == symbol and self._query[i - 1] == self._candidate[j - 2]:
+                self._table[i][j] = min(self._table[i - 2][j - 2] + 1, self._table[i][j])
+            result = min(result, self._table[i][j])
+        return result
 
     def update2(self, j: int, symbol: str) -> int:
         """
@@ -108,7 +120,10 @@ class EditTable:
         column index is just out of range. That way, the table is usable also by clients
         that need to deal with candidate strings longer than what was initially anticipated.
         """
-        raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
+        if j == len(self._candidate) + 1:
+            self.__extend(5)
+        self._candidate[j - 1] = symbol
+        return self.update(j)
 
     def distance(self, j: int = -1) -> int:
         """
