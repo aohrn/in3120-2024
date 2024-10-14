@@ -22,4 +22,5 @@ Innholdet i gruppetimene er laget for at man skal være fysisk til stede der og 
 1. [Oblighjelp og FAQ.](./uke4)
 1. [Collections og ranked retrieval.](./uke5)
 1. [Case study.](./uke6)
+1. [Metrikker.](./uke7)
 
