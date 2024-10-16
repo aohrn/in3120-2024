@@ -12,7 +12,6 @@ Intuisjonen bak tf-idf er å belønne ord som forekommer ofte i et dokument, men
 Det blir for simpelt å _bare_ se på frekvens. Et dokument der spørringen forekommer 10 ganger _er_ mer relevant enn et dokument der spørringen forekommer 1 gang, men ikke 10 ganger mer relevant! Et alternativ er å ta logaritmen av antall forekomster + 1!
 
 > **Quick maths:** \
-> 1 + log<sub>10</sub>(0) = 0 \
 > 1 + log<sub>10</sub>(1) = 1 \
 > 1 + log<sub>10</sub>(2) = 1.3 \
 > 1 + log<sub>10</sub>(10) = 2 \
