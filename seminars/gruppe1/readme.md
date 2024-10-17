@@ -13,4 +13,4 @@ Ellers er jeg tilgjengelig på e-post (trulshes@uio.no) eller Mattermost (trulsh
 5. [Distributed indexes og Compression](https://github.com/aohrn/in3120-2024/tree/main/seminars/gruppe1/uke05)
 6. [Tf-idf og cosine similarity](https://github.com/aohrn/in3120-2024/tree/main/seminars/gruppe1/uke06)
 7. [MAP, Kendall Tau og NDCG](https://github.com/aohrn/in3120-2024/tree/main/seminars/gruppe1/uke07)
-8. [Rocchio (query expansion), Rocchio (klassifisering) og kNN] (https://github.com/aohrn/in3120-2024/tree/main/seminars/gruppe1/uke08)
+8. [Rocchio query expansion, Rocchio klassifisering og kNN] (https://github.com/aohrn/in3120-2024/tree/main/seminars/gruppe1/uke08)
