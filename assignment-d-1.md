@@ -91,24 +91,22 @@ Bye!
 Indexing English news corpus...
 Enter a query and find matching documents.
 Lookup options are {'debug': False, 'hit_count': 5, 'match_threshold': 0.5}.
+Normalizer is SimpleNormalizer.
 Tokenizer is SimpleTokenizer.
 Ranker is BetterRanker.
 Ctrl-C to exit.
 query>water in the tank
-[{'document': {'document_id': 7398, 'fields': {'body': 'The elevated salt levels in the water threatened some of the wildlife in the area that depend on a supply of fresh water.'}},
-  'score': 1.3941246235276306},
- {'document': {'document_id': 9699, 'fields': {'body': 'While there are not many people in the water during the winter months, there are plenty playing by the shore with their jeans rolled up just enough so t
-hat they can feel the cool water lap up against their feet.'}},
-  'score': 1.313894761437516},
- {'document': {'document_id': 157, 'fields': {'body': "A Chinese People's Liberation Army cadet sits in a Main Battle Tank during a demonstration at the PLA's Armoured Forces Engineering Academy Base, July 22
-, 2014."}},
-  'score': 1.2521843989957548},
+[{'document': {'document_id': 157, 'fields': {'body': "A Chinese People's Liberation Army cadet sits in a Main Battle Tank during a demonstration at the PLA's Armoured Forces Engineering Academy Base, July 22, 2014."}},
+  'score': 4.159666535003645},
  {'document': {'document_id': 2818, 'fields': {'body': 'He noted that 50 percent of his 71 Shark Tank investments have been in female-led companies.'}},
-  'score': 1.1974759616298138},
- {'document': {'document_id': 4515, 'fields': {'body': 'Kate Kralman, who shot the video of the MAX going through the water, was helping a friend load equipment nearby when she saw one light rail train go thr
-ough the water.'}},
-  'score': 1.176740906290895}]
-Evaluation took 0.06133769999999927 seconds.
+  'score': 3.9779290398903395},
+ {'document': {'document_id': 7655, 'fields': {'body': "Their lawyer, Fernando Chavez, said a collision with the Jeep's plastic gas tank behind the rear axle caused it to burst into flames."}},
+  'score': 3.758759727635914},
+ {'document': {'document_id': 7398, 'fields': {'body': 'The elevated salt levels in the water threatened some of the wildlife in the area that depend on a supply of fresh water.'}},
+  'score': 3.746312408070838},
+ {'document': {'document_id': 9699, 'fields': {'body': 'While there are not many people in the water during the winter months, there are plenty playing by the shore with their jeans rolled up just enough so that they can feel the cool water lap up against their feet.'}},
+  'score': 3.6091585529242174}]
+Evaluation took 0.014417600999877322 seconds.
 query>^C
 Bye!
 ```
