@@ -6,4 +6,7 @@ Oppdateres fortløpende. Se tidspunkt for siste oppdatering over^
 
 - MapReduce
 - Compression
+- ANN (approximate nearest neighbor)
+- SVMer
+- LTR (Learning to rank)
 
