@@ -25,4 +25,5 @@ Innholdet i gruppetimene er laget for at man skal være fysisk til stede der og 
 1. [Metrikker.](./uke07)
 1. [Live-progging og oblighjelp.](./uke08)
 1. [Klassifisering.](./uke09)
+1. [Naïve bayes.](./uke10)
 
