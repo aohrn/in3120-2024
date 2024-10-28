@@ -30,12 +30,16 @@ Example output:
 
 ```
 >cd tests
->python3 assignments.py e
-test_china_example_from_textbook (tests.TestNaiveBayesClassifier) ... ok
-test_language_detection_trained_on_some_news_corpora (tests.TestNaiveBayesClassifier) ... ok
+>python3 assignments.py e-1
+test_china_example_from_textbook (test_naivebayesclassifier.TestNaiveBayesClassifier.test_china_example_from_textbook) ... ok
+test_language_detection_trained_on_some_news_corpora (test_naivebayesclassifier.TestNaiveBayesClassifier.test_language_detection_trained_on_some_news_corpora) ... ok
+test_predict_movie_genre_from_movie_title (test_naivebayesclassifier.TestNaiveBayesClassifier.test_predict_movie_genre_from_movie_title) ... ok
+test_predict_name_of_search_engine_from_description (test_naivebayesclassifier.TestNaiveBayesClassifier.test_predict_name_of_search_engine_from_description) ... ok
+test_scores_are_sorted_descending (test_naivebayesclassifier.TestNaiveBayesClassifier.test_scores_are_sorted_descending) ... ok
+test_uses_yield (test_naivebayesclassifier.TestNaiveBayesClassifier.test_uses_yield) ... ok
 
 ----------------------------------------------------------------------
-Ran 2 tests in 3.281s
+Ran 6 tests in 1.127s
 
 OK
 ```
@@ -47,17 +51,17 @@ Enter some text and classify it into ['en', 'no', 'da', 'de'].
 Returned scores are log-probabilities.
 Ctrl-C to exit.
 text>norsk er nærmere dansk enn tysk
-[{'category': 'no', 'score': -50.90542217389785},
- {'category': 'da', 'score': -57.70586771883279},
- {'category': 'de', 'score': -69.80849082418189},
- {'category': 'en', 'score': -76.06463449054945}]
-Evaluation took 0.00020830000000060522 seconds.
+[{'category': 'no', 'score': -50.90329839245},
+ {'category': 'da', 'score': -57.705568553290895},
+ {'category': 'de', 'score': -69.80620325366844},
+ {'category': 'en', 'score': -76.06274813061904}]
+Evaluation took 0.00012325499847065657 seconds.
 text>the bicycle was built for two persons
-[{'category': 'en', 'score': -54.30172379503675},
- {'category': 'da', 'score': -75.13534392006915},
- {'category': 'no', 'score': -77.17518464340273},
- {'category': 'de', 'score': -77.69365558296839}]
-Evaluation took 0.00021139999999775227 seconds.
+[{'category': 'en', 'score': -54.29952304178464},
+ {'category': 'da', 'score': -75.13499489360362},
+ {'category': 'no', 'score': -77.17270689838026},
+ {'category': 'de', 'score': -77.69098675070268}]
+Evaluation took 0.0001519190009275917 seconds.
 text>^C
 Bye!
 ```
