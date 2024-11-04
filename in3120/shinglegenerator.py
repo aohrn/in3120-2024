@@ -1,7 +1,7 @@
 # pylint: disable=missing-module-docstring
 # pylint: disable=line-too-long
 
-from typing import Iterator, Tuple, Optional
+from typing import Iterator, Tuple
 from collections import deque
 from itertools import islice
 from .tokenizer import Tokenizer
@@ -34,7 +34,13 @@ class ShingleGenerator(Tokenizer):
         self.__width = width
 
     def spans(self, buffer: str) -> Iterator[Tuple[int, int]]:
-        raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
+        if buffer == "":
+            return
+        if len(buffer) <= self.__width:
+            yield (0, len(buffer))
+        else:
+            yield from ((i, i + self.__width) for i in range(len(buffer) - self.__width + 1))
+
 
 class WordShingleGenerator(Tokenizer):
     """
@@ -55,7 +61,7 @@ class WordShingleGenerator(Tokenizer):
     with the added convenience of doing normalization as part of the tokenization process.
     """
 
-    def __init__(self, width: int, tokenizer: Tokenizer, normalizer: Optional[Normalizer]):
+    def __init__(self, width: int, tokenizer: Tokenizer, normalizer: None |  Normalizer):
         assert width > 0
         self.__width = width
         self.__tokenizer = tokenizer
@@ -80,4 +86,3 @@ class WordShingleGenerator(Tokenizer):
             if string is None:
                 break
             window.append((self.__normalizer.normalize(string), span))
-
