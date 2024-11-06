@@ -33,10 +33,25 @@ class BetterRanker(Ranker):
         self._inverted_index = inverted_index
 
     def reset(self, document_id: int) -> None:
-        raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
+        self._score = 0.0
+        self._document_id = document_id
 
     def update(self, term: str, multiplicity: int, posting: Posting) -> None:
-        raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
+        assert term is not None
+        assert multiplicity > 0
+        assert posting is not None
+        assert posting.term_frequency > 0
+        assert posting.document_id == self._document_id
+        tf_score = 1.0 + math.log10(posting.term_frequency)
+        idf_score = math.log10(self._corpus.size() / self._inverted_index.get_document_frequency(term))
+        self._score += (1.0 + math.log10(multiplicity)) * tf_score * idf_score
 
     def evaluate(self) -> float:
-        raise NotImplementedError("You need to implement this as part of the obligatory assignment.")
+        # Now that the dynamic (query-dependent) score is fully updated, combine it
+        # with the static (query-independent) score using a simple weighted sum. Other
+        # ways of combining the two are plausible. In a large real-world search system,
+        # weights would be machine-learnt offline and it'd be up to the chosen ML model
+        # how to best combine the many features to yield a compound relevance score.
+        document = self._corpus[self._document_id]
+        static_quality_score = float(document[self._static_score_field_name] or self._static_score_default_value)
+        return (self._dynamic_score_weight * self._score) + (self._static_score_weight * static_quality_score)
