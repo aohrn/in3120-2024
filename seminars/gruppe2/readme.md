@@ -28,4 +28,5 @@ Innholdet i gruppetimene er laget for at man skal være fysisk til stede der og 
 1. [Naïve bayes.](./uke10)
 1. [Websøk.](./uke11)
 1. [Eksamensprep I.](./uke12)
+1. [Eksamensprep II.](./uke13)
 
