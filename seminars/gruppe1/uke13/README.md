@@ -1,3 +1,3 @@
 # Uke 13
 
-Denne ukas slider er en gjennomgang av TAAT vs. DAAT, og BSBI vs. SPIMI.  
+Denne ukas slider er en gjennomgang av DAAT vs. TAAT, og BSBI vs. SPIMI.  
