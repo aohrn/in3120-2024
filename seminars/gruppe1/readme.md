@@ -17,4 +17,5 @@ Ellers er jeg tilgjengelig på e-post (trulshes@uio.no) eller Mattermost (trulsh
 9. No slides this week, only live presentation of old science fairs
 10. [Naive Bayes example](https://github.com/aohrn/in3120-2024/tree/main/seminars/gruppe1/uke10)
 11. [Vanlige eksamenstemaer](https://github.com/aohrn/in3120-2024/tree/main/seminars/gruppe1/uke11)
-12. [Gjennomgang av eksamen 2023](https://github.com/aohrn/in3120-2024/tree/main/seminars/gruppe1/uke12) 
+12. [Gjennomgang av eksamen 2023](https://github.com/aohrn/in3120-2024/tree/main/seminars/gruppe1/uke12)
+13. [DAAT, TAAT, BSBI og SPIMI](https://github.com/aohrn/in3120-2024/tree/main/seminars/gruppe1/uke13)
